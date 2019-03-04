@@ -64,11 +64,4 @@ public class HomeController {
 
     }
 
-    /**
-     * 权限管理
-     */
-    @FXML
-    private void qxgl() {
-
-    }
 }

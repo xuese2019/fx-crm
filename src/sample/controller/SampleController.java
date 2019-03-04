@@ -11,8 +11,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import sample.db.utils.OpSqliteDB;
+import sample.utils.AccountUtils;
+
+import java.sql.ResultSet;
 
 public class SampleController {
+
+    private OpSqliteDB db = new OpSqliteDB();
 
     @FXML
     private TextField account;
@@ -50,17 +56,22 @@ public class SampleController {
      * 登陆验证
      */
     private void logind2() {
-//        String accountText = account.getText();
-//        String passwordText = password.getText();
-//        loginButton.setDisable(true);
-//        if (accountText.equals("admin") && passwordText.equals("admin")) {
-//            loginButton.setDisable(true);
+        String accountText = account.getText();
+        String passwordText = password.getText();
+        loginButton.setDisable(true);
+        if (accountText.equals("admin") && passwordText.equals("admin")) {
+            loginButton.setDisable(true);
 //            跳转
-        toHome();
-//        } else {
-//            loginButton.setDisable(false);
-//            errorText.setText("账号或密码错误");
-//        }
+            toHome();
+        } else {
+            ResultSet query = db.query("select * from account_table where account = '" + accountText + "' and password = '" + passwordText + "'");
+            if (query != null) {
+                toHome();
+            } else {
+                loginButton.setDisable(false);
+                errorText.setText("账号或密码错误");
+            }
+        }
     }
 
     /**
@@ -69,6 +80,7 @@ public class SampleController {
     private void toHome() {
         try {
             //        获取stage
+            AccountUtils.ACC = account.getText();
             ObservableList<Stage> stages = FXRobotHelper.getStages();
             Stage stage = stages.get(0);
             Parent root = FXMLLoader.load(getClass().getResource("../fxml/home.fxml"));
