@@ -31,4 +31,44 @@ public class HomeController {
         Stage stage = stages.get(0);
         stage.setIconified(true);
     }
+
+    /**
+     * 个人中心
+     */
+    @FXML
+    private void grzx() {
+
+    }
+
+    /**
+     * 账号管理
+     */
+    @FXML
+    private void zhgl() {
+
+    }
+
+    /**
+     * 客户管理
+     */
+    @FXML
+    private void khgl() {
+
+    }
+
+    /**
+     * 拜访记录
+     */
+    @FXML
+    private void bfjl() {
+
+    }
+
+    /**
+     * 权限管理
+     */
+    @FXML
+    private void qxgl() {
+
+    }
 }
