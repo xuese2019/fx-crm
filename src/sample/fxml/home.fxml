@@ -40,7 +40,8 @@
                                 </HBox>
                             </children>
                         </HBox>
-                        <VBox fx:id="bodys" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #ccc;" VBox.vgrow="ALWAYS" />
+                        <VBox fx:id="bodys" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #ccc;" VBox.vgrow="ALWAYS" >
+                        </VBox>
                     </children>
                 </VBox>
             </children>

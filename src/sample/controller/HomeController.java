@@ -3,6 +3,9 @@ package sample.controller;
 import com.sun.javafx.robot.impl.FXRobotHelper;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
@@ -11,6 +14,9 @@ import javafx.stage.Stage;
  * @description:
  */
 public class HomeController {
+
+    @FXML
+    private VBox bodys;
 
     /**
      * 关闭程序
@@ -37,7 +43,7 @@ public class HomeController {
      */
     @FXML
     private void grzx() {
-
+        men("grzx");
     }
 
     /**
@@ -45,7 +51,7 @@ public class HomeController {
      */
     @FXML
     private void zhgl() {
-
+        men("zhgl");
     }
 
     /**
@@ -53,7 +59,7 @@ public class HomeController {
      */
     @FXML
     private void khgl() {
-
+        men("khgl");
     }
 
     /**
@@ -61,7 +67,17 @@ public class HomeController {
      */
     @FXML
     private void bfjl() {
+        men("bfjl");
+    }
 
+    private void men(String str) {
+        try {
+            bodys.getChildren().clear();
+            Parent root = FXMLLoader.load(getClass().getResource("../fxml/"+str+".fxml"));
+            bodys.getChildren().add(root);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }
