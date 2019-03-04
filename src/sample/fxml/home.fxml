@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
+            minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.HomeController">
+    <children>
+        <HBox layoutX="124.0" layoutY="14.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <VBox prefWidth="150.0" styleClass="home-left">
+                    <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="150.0"
+                               text="当前登陆人" textAlignment="CENTER"/>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="150.0"
+                               style="-fx-border-color: #ccc;" text="菜单1" textAlignment="CENTER">
+                            <VBox.margin>
+                                <Insets/>
+                            </VBox.margin>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="150.0"
+                               style="-fx-border-color: #ccc;" text="菜单2" textAlignment="CENTER"/>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="150.0"
+                               style="-fx-border-color: #ccc;" text="菜单3" textAlignment="CENTER"/>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="150.0"
+                               style="-fx-border-color: #ccc;" text="菜单4" textAlignment="CENTER"/>
+                    </children>
+                </VBox>
+                <VBox HBox.hgrow="ALWAYS">
+                    <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="30.0">
+                            <children>
+                                <HBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS"/>
+                                <HBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="50.0">
+                                    <children>
+                                        <Label alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#setMin"
+                                               prefHeight="30.0" prefWidth="50.0" style="-fx-background-color: yellow;"
+                                               text="-"/>
+                                    </children>
+                                </HBox>
+                                <HBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="50.0">
+                                    <children>
+                                        <Label alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#closeLogin"
+                                               prefHeight="30.0" prefWidth="50.0" style="-fx-background-color: red;"
+                                               text="X"/>
+                                    </children>
+                                </HBox>
+                            </children>
+                        </HBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #ccc;"
+                              VBox.vgrow="ALWAYS"/>
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+    </children>
+</AnchorPane>
