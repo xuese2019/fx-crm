@@ -9,7 +9,8 @@ import java.sql.*;
  */
 public class OpSqliteDB {
     private static final String Class_Name = "org.sqlite.JDBC";
-    private static final String DB_URL = "jdbc:sqlite:D:\\work\\fx-crm\\src\\sample\\db/sqlite/crm.db";
+    private static final String DB_URL = "jdbc:sqlite:D:crm.db";
+
 
     /**
      * 根据sql 查询
@@ -19,13 +20,13 @@ public class OpSqliteDB {
      */
     public ResultSet query(String sql) {
         Connection connection = null;
-        ResultSet rs = null;
+        ResultSet resultSet = null;
         try {
             connection = createConnection();
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30); // set timeout to 30 sec.
             // 执行查询语句
-            rs = statement.executeQuery(sql);
+            resultSet = statement.executeQuery(sql);
         } catch (SQLException e) {
             System.err.println(e.getMessage());
         } catch (Exception e) {
@@ -38,7 +39,7 @@ public class OpSqliteDB {
                 e.printStackTrace();
             }
         }
-        return rs;
+        return resultSet;
     }
 
     /**
@@ -52,7 +53,6 @@ public class OpSqliteDB {
         try {
             connection = createConnection();
             Statement statement = connection.createStatement();
-            statement.setQueryTimeout(30); // set timeout to 30 sec.
             statement.executeUpdate(sql);
         } catch (SQLException e) {
             System.err.println(e.getMessage());

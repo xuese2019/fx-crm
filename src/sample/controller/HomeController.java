@@ -47,14 +47,6 @@ public class HomeController {
     }
 
     /**
-     * 账号管理
-     */
-    @FXML
-    private void zhgl() {
-        men("zhgl");
-    }
-
-    /**
      * 客户管理
      */
     @FXML

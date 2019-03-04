@@ -18,7 +18,6 @@
                                 <Insets />
                             </VBox.margin>
                         </Label>
-                        <Label fx:id="zhgl" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#zhgl" prefHeight="30.0" prefWidth="150.0" style="-fx-border-color: #ccc;" text="账号管理" textAlignment="CENTER" />
                         <Label fx:id="khgl" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#khgl" prefHeight="30.0" prefWidth="150.0" style="-fx-border-color: #ccc;" text="客户管理" textAlignment="CENTER" />
                         <Label fx:id="bfjl" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#bfjl" prefHeight="30.0" prefWidth="150.0" style="-fx-border-color: #ccc;" text="拜访记录" textAlignment="CENTER" />
                     </children>

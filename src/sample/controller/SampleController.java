@@ -64,7 +64,7 @@ public class SampleController {
 //            跳转
             toHome();
         } else {
-            ResultSet query = db.query("select * from account_table where account = " + accountText + " and password = " + passwordText);
+            ResultSet query = db.query("select * from account_table where account = '" + accountText + "' and password = '" + passwordText + "'");
             if (query != null) {
                 try {
                     if (query.next()) {
@@ -73,6 +73,7 @@ public class SampleController {
                         loginButton.setDisable(false);
                         errorText.setText("账号或密码错误");
                     }
+                    query.close();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
