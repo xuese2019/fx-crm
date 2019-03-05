@@ -13,11 +13,11 @@
             <HBox alignment="CENTER_LEFT" prefHeight="30.0">
                <children>
                   <Label prefHeight="30.0" text="名称" textFill="WHITE" />
-                  <TextField fx:id="name" prefHeight="30.0" />
+                  <TextField fx:id="name" prefHeight="30.0" styleClass="notwh" />
                   <Label prefHeight="30.0" text="联系电话" textFill="WHITE" />
-                  <TextField fx:id="dh" prefHeight="30.0" />
+                  <TextField fx:id="dh" prefHeight="30.0" styleClass="notwh" />
                   <Label alignment="CENTER" prefHeight="30.0" text="地址" textFill="WHITE" />
-                  <TextField fx:id="dz" prefHeight="30.0" />
+                  <TextField fx:id="dz" prefHeight="30.0" styleClass="notwh" />
                   <Button mnemonicParsing="false" onMouseClicked="#add" prefHeight="30.0" styleClass="buttons" text="新增" textFill="WHITE" />
                   <Button mnemonicParsing="false" onMouseClicked="#page" prefHeight="30.0" styleClass="buttons" text="查询" textFill="WHITE" />
                   <Label fx:id="error" prefHeight="30.0" />

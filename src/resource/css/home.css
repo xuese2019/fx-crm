@@ -1,6 +1,12 @@
 *{
     -fx-text-fill: white;
 }
+.notwh{
+    -fx-text-fill: black;
+}
+.notwh-date *{
+    -fx-text-fill: black;
+}
 .cursor1:hover{
     -fx-cursor: hand;
     -fx-background-color: #003bce;

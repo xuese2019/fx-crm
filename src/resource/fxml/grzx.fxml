@@ -18,7 +18,7 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField fx:id="password" prefHeight="30.0" />
+                  <TextField fx:id="password" prefHeight="30.0" styleClass="notwh" />
                   <Button mnemonicParsing="false" onMouseClicked="#updatePWD" prefHeight="30.0" styleClass="buttons" text="确定" textFill="WHITE" />
                   <Label fx:id="pwderror" />
                </children>
@@ -30,7 +30,7 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField fx:id="userName" prefHeight="30.0" />
+                  <TextField fx:id="userName" prefHeight="30.0" styleClass="notwh" />
                   <Button mnemonicParsing="false" onMouseClicked="#updateName" prefHeight="30.0" styleClass="buttons" text="确定" textFill="WHITE" />
                   <Label fx:id="nameerror" />
                </children>

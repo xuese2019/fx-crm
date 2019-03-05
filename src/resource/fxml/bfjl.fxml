@@ -12,13 +12,13 @@
             <HBox prefHeight="30.0">
                <children>
                   <Label prefHeight="30.0" text="客户名称" textFill="WHITE" />
-                  <TextField fx:id="khmc" prefHeight="30.0" />
+                  <TextField fx:id="khmc" prefHeight="30.0" styleClass="notwh" />
                   <Label prefHeight="30.0" text="开始时间" textFill="WHITE" />
-                  <DatePicker fx:id="kssj" prefHeight="30.0" prefWidth="140.0" />
+                  <DatePicker fx:id="kssj" prefHeight="30.0" prefWidth="140.0" styleClass="notwh-date" />
                   <Label prefHeight="30.0" text="结束时间" textFill="WHITE" />
-                  <DatePicker fx:id="jssj" prefHeight="30.0" prefWidth="140.0" />
+                  <DatePicker fx:id="jssj" prefHeight="30.0" prefWidth="140.0" styleClass="notwh-date" />
                   <Label prefHeight="30.0" text="跟进内容关键字" textFill="WHITE" />
-                  <TextField fx:id="gjz" prefHeight="30.0" />
+                  <TextField fx:id="gjz" prefHeight="30.0" styleClass="notwh" />
                   <Button mnemonicParsing="false" onMouseClicked="#add" prefHeight="30.0" styleClass="buttons" text="新增" textFill="WHITE" />
                   <Button mnemonicParsing="false" onMouseClicked="#page" prefHeight="30.0" styleClass="buttons" text="查询" textFill="WHITE" />
                   <Button mnemonicParsing="false" onMouseClicked="#pageUp" prefHeight="30.0" styleClass="buttons" text="上一页" textFill="WHITE" />
