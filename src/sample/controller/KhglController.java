@@ -35,6 +35,8 @@ public class KhglController {
     private Label error;
     @FXML
     private VBox tables;
+    @FXML
+    private Label pageNow;
 
     @FXML
     private void add() {
@@ -56,12 +58,43 @@ public class KhglController {
                 name.setText("");
                 dh.setText("");
                 dz.setText("");
+                query(0);
             }
         }
     }
 
     @FXML
-    private void query() {
+    private void page() {
+        query(0);
+        pageNow.setText("1");
+    }
+
+    @FXML
+    private void pageDow() {
+//        String text = pageNow.getText();
+//        int i = Integer.parseInt(text);
+//        if (i == 1){
+//            pageNow.setText(i + "");
+//            query(0);
+//        }else{
+//
+//        }
+//        pageNow.setText(i + "");
+//        query(i-1);
+    }
+
+    @FXML
+    private void pageUp() {
+//        String text = pageNow.getText();
+//        int i = Integer.parseInt(text);
+//        i = i - 1;
+//        if (i < 0)
+//            i = 0;
+//        query(0);
+//        pageNow.setText((i == 0 ? 1 : i) + "");
+    }
+
+    private void query(int p) {
         tables.getChildren().clear();
         ObservableList<Node> children = tables.getChildren();
 
@@ -104,6 +137,13 @@ public class KhglController {
         labe5.setAlignment(Pos.CENTER);
         box.getChildren().add(labe5);
 
+        Label labe6 = new Label();
+        labe6.setPrefWidth(100);
+        labe6.setPrefHeight(30);
+        labe6.setText("操作");
+        labe6.setAlignment(Pos.CENTER);
+        box.getChildren().add(labe6);
+
         children.add(box);
 
         HBox box2 = new HBox();
@@ -112,7 +152,18 @@ public class KhglController {
         box2.setStyle("-fx-border-color: red;");
         children.add(box2);
 
-        List<Map<Integer, String>> list1 = dao.query("select * from kh_table");
+//        List<Map<Integer, String>> list1 = dao.query("select * from kh_table limit 20 offset " + p);
+        String s = "";
+        if (!name.getText().trim().isEmpty()) {
+            s += " and name like '%" + name.getText() + "%' ";
+        }
+        if (!dh.getText().trim().isEmpty()) {
+            s += " and dh like '%" + dh.getText() + "%' ";
+        }
+        if (!dz.getText().trim().isEmpty()) {
+            s += " and dz like '%" + dz.getText() + "%' ";
+        }
+        List<Map<Integer, String>> list1 = dao.query("select * from kh_table where 1 = 1 " + s + " limit 30");
 
         data(children, list1);
     }
@@ -127,7 +178,7 @@ public class KhglController {
                 Label label = new Label();
                 label.setPrefWidth(30);
                 label.setPrefHeight(30);
-                label.setText(list1.get(i).get(0));
+                label.setText((i + 1) + "");
                 label.setAlignment(Pos.CENTER);
                 box.getChildren().add(label);
 
@@ -159,6 +210,17 @@ public class KhglController {
                 labe5.setAlignment(Pos.CENTER);
                 box.getChildren().add(labe5);
 
+                Label labe6 = new Label();
+                labe6.setPrefWidth(100);
+                labe6.setPrefHeight(30);
+                labe6.setText("删除");
+                labe6.setAlignment(Pos.CENTER);
+                String s = list1.get(i).get(1);
+                labe6.setOnMouseClicked(event -> {
+                    delete(s);
+                });
+                box.getChildren().add(labe6);
+
                 children.add(box);
 
                 HBox box2 = new HBox();
@@ -168,5 +230,10 @@ public class KhglController {
                 children.add(box2);
             }
         }
+    }
+
+    private void delete(String name) {
+        dao.update("delete from kh_table where name = '" + name + "'");
+        query(0);
     }
 }

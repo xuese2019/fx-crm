@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
@@ -18,8 +19,16 @@
                   <Label alignment="CENTER" prefHeight="30.0" text="地址" />
                   <TextField fx:id="dz" prefHeight="30.0" />
                   <Button mnemonicParsing="false" onMouseClicked="#add" prefHeight="30.0" text="新增" />
-                  <Button mnemonicParsing="false" onMouseClicked="#query" prefHeight="30.0" text="查询" />
+                  <Button mnemonicParsing="false" onMouseClicked="#page" prefHeight="30.0" text="查询" />
                   <Label fx:id="error" prefHeight="30.0" />
+                  <Label prefHeight="30.0" text="当前页数">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="pageNow" prefHeight="30.0" text="1" />
+                  <Button mnemonicParsing="false" onMouseClicked="#pageUp" prefHeight="30.0" text="上一页" />
+                  <Button mnemonicParsing="false" onMouseClicked="#pageDow" prefHeight="30.0" text="下一页" />
                </children>
             </HBox>
             <VBox fx:id="tables" VBox.vgrow="ALWAYS" />

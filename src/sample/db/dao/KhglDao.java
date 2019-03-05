@@ -29,14 +29,14 @@ public class KhglDao {
             // 执行查询语句
             resultSet = statement.executeQuery(sql);
             if (resultSet != null && resultSet.next()) {
-                while (resultSet.next()) {
+                do {
                     Map<Integer, String> m = new HashMap<>();
                     m.put(1, resultSet.getString(1));
                     m.put(2, resultSet.getString(2));
                     m.put(3, resultSet.getString(3));
                     m.put(4, resultSet.getString(4));
                     list.add(m);
-                }
+                } while (resultSet.next());
             }
         } catch (SQLException e) {
             System.err.println(e.getMessage());
