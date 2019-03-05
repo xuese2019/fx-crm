@@ -20,9 +20,11 @@ public class OpSqliteDB {
         return DriverManager.getConnection(DB_URL);
     }
 
-    public static String path() {
+    private static String path() {
         URL url = OpSqliteDB.class.getResource("/");
-        return url.toString().substring(6) + "sample/db/sqlite/crm.db";
+        String s = url.toString().substring(6) + "sample/db/sqlite/crm.db";
+        System.out.println(s);
+        return s;
     }
 
 }
