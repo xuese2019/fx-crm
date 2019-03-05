@@ -17,6 +17,7 @@
         <element id="module-output" name="fx-crm" />
       </element>
       <element id="library" level="project" name="sqlite-jdbc-3.7.2" />
+      <element id="file-copy" path="$PROJECT_DIR$/src/resource/db/crm.db" />
     </root>
   </artifact>
 </component>
