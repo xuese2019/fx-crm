@@ -15,8 +15,9 @@ public class OpSqliteDB {
     // 创建Sqlite数据库连接
     public static Connection createConnection() throws SQLException, ClassNotFoundException {
         Class.forName("org.sqlite.JDBC");
-        Path db = new Path();
-        return DriverManager.getConnection("jdbc:sqlite:"+db.path()+"\\crm.db");
+        String property = System.getProperty("user.dir");
+        System.out.println(property);
+        return DriverManager.getConnection("jdbc:sqlite:"+property+"\\crm.db");
     }
 
 }
