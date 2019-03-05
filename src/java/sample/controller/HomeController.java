@@ -76,7 +76,7 @@ public class HomeController {
     private void men(String str) {
         try {
             bodys.getChildren().clear();
-            Parent root = FXMLLoader.load(getClass().getResource("../fxml/" + str + ".fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/" + str + ".fxml"));
             bodys.getChildren().add(root);
         } catch (Exception e) {
             e.printStackTrace();

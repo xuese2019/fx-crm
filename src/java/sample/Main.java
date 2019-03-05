@@ -19,7 +19,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("fxml/sample.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/sample.fxml"));
         ObservableList<Node> childrenUnmodifiable = root.getChildrenUnmodifiable();
         if (!childrenUnmodifiable.isEmpty()) {
             VBox node = (VBox) childrenUnmodifiable.get(0);
@@ -29,7 +29,7 @@ public class Main extends Application {
         }
 //        primaryStage.setTitle("CRM");
         Scene scene = new Scene(root);
-        scene.getStylesheets().add(getClass().getResource("css/login.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("/css/login.css").toExternalForm());
         primaryStage.setScene(scene);
 //        禁止窗口缩放大小
         primaryStage.setResizable(false);
