@@ -30,7 +30,7 @@ public class KhglController {
     private Daos dao = new Daos();
 
     private static int p = 0;
-    private static int p2 = 30;
+    private static int p2 = 20;
 
     @FXML
     private TextField name;

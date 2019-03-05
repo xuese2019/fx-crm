@@ -57,7 +57,6 @@ public class Daos {
     }
 
     public boolean update(String sql) {
-        System.out.println(sql);
         Connection connection = null;
         Statement statement = null;
         boolean b = false;
