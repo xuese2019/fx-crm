@@ -104,14 +104,14 @@ public class BfjlController {
         button.setText("确定");
         button.setOnMouseClicked(event -> {
             if (!label2.getText().trim().isEmpty() && datePicker.getValue() != null && !textArea.getText().trim().isEmpty()) {
-                if (textArea.getText().length() <= 125) {
+                if (textArea.getText().length() <= 2000) {
                     dao.update("insert into bfjl_table (khmc,gjsj,gjnr) values ('" + label2.getText() + "','" + datePicker.getValue().toString() + "','" + textArea.getText() + "')");
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setContentText("成功");
                     alert.show();
                 } else {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setContentText("记录不能超过125个字");
+                    alert.setContentText("记录不能超过2000个字");
                     alert.show();
                 }
             } else {
