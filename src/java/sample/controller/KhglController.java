@@ -69,7 +69,7 @@ public class KhglController {
     }
 
     @FXML
-    private void page() {
+    public void page() {
         query(0);
     }
 
@@ -160,9 +160,9 @@ public class KhglController {
                 HBox box = new HBox();
                 box.setPrefWidth(Region.USE_COMPUTED_SIZE);
                 box.setPrefHeight(30);
-                if(i%2 == 0){
+                if (i % 2 == 0) {
                     box.setStyle("-fx-background-color: #0041e3;");
-                }else{
+                } else {
                     box.setStyle("-fx-background-color: #285ee4;");
                 }
 

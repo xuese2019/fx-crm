@@ -1,6 +1,5 @@
 package sample.db.utils;
 
-import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -16,8 +15,7 @@ public class OpSqliteDB {
     public static Connection createConnection() throws SQLException, ClassNotFoundException {
         Class.forName("org.sqlite.JDBC");
         String property = System.getProperty("user.dir");
-        System.out.println(property);
-        return DriverManager.getConnection("jdbc:sqlite:"+property+"\\crm.db");
+        return DriverManager.getConnection("jdbc:sqlite:" + property + "\\crm.db");
     }
 
 }

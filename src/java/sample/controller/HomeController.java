@@ -75,8 +75,19 @@ public class HomeController {
 
     private void men(String str) {
         try {
+//            ObservableList<Stage> stages = FXRobotHelper.getStages();
             bodys.getChildren().clear();
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/" + str + ".fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/" + str + ".fxml"));
+            Parent root = fxmlLoader.load();
+            if (str.equals("khgl")) {
+                KhglController controller = fxmlLoader.getController();
+                controller.page();
+            }
+            if (str.equals("bfjl")) {
+                BfjlController controller = fxmlLoader.getController();
+                controller.page();
+            }
+//            Parent root = FXMLLoader.load(getClass().getResource("/fxml/" + str + ".fxml"));
             bodys.getChildren().add(root);
         } catch (Exception e) {
             e.printStackTrace();
