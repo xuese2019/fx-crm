@@ -4,11 +4,15 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import sample.db.dao.KhglDao;
 
 import java.text.SimpleDateFormat;
@@ -25,6 +29,9 @@ public class KhglController {
 
     private KhglDao dao = new KhglDao();
 
+    private static int p = 0;
+    private static int p2 = 30;
+
     @FXML
     private TextField name;
     @FXML
@@ -35,8 +42,6 @@ public class KhglController {
     private Label error;
     @FXML
     private VBox tables;
-    @FXML
-    private Label pageNow;
 
     @FXML
     private void add() {
@@ -47,7 +52,7 @@ public class KhglController {
         if (text.trim().isEmpty() || text1.trim().isEmpty() || text2.trim().isEmpty()) {
             error.setText("名称，电话，地址都不能为空");
         } else {
-            List<Map<Integer, String>> list = dao.query("select * from kh_table where name = '" + text + "'");
+            List<Map<Integer, String>> list = dao.query("select * from kh_table where name = '" + text + "'", 4);
             if (list != null && list.size() > 0) {
                 error.setText("客户名称重复");
             } else {
@@ -66,32 +71,20 @@ public class KhglController {
     @FXML
     private void page() {
         query(0);
-        pageNow.setText("1");
-    }
-
-    @FXML
-    private void pageDow() {
-//        String text = pageNow.getText();
-//        int i = Integer.parseInt(text);
-//        if (i == 1){
-//            pageNow.setText(i + "");
-//            query(0);
-//        }else{
-//
-//        }
-//        pageNow.setText(i + "");
-//        query(i-1);
     }
 
     @FXML
     private void pageUp() {
-//        String text = pageNow.getText();
-//        int i = Integer.parseInt(text);
-//        i = i - 1;
-//        if (i < 0)
-//            i = 0;
-//        query(0);
-//        pageNow.setText((i == 0 ? 1 : i) + "");
+        p = p - (p2 + 1);
+        if (p < 0)
+            p = 0;
+        query(p);
+    }
+
+    @FXML
+    private void pageDow() {
+        p = p + p2;
+        query(p);
     }
 
     private void query(int p) {
@@ -163,7 +156,7 @@ public class KhglController {
         if (!dz.getText().trim().isEmpty()) {
             s += " and dz like '%" + dz.getText() + "%' ";
         }
-        List<Map<Integer, String>> list1 = dao.query("select * from kh_table where 1 = 1 " + s + " limit 30");
+        List<Map<Integer, String>> list1 = dao.query("select * from kh_table where 1 = 1 " + s + " order by time desc limit " + p + "," + p2, 4);
 
         data(children, list1);
     }
@@ -178,7 +171,7 @@ public class KhglController {
                 Label label = new Label();
                 label.setPrefWidth(30);
                 label.setPrefHeight(30);
-                label.setText((i + 1) + "");
+                label.setText((i + p) + "");
                 label.setAlignment(Pos.CENTER);
                 box.getChildren().add(label);
 
@@ -221,6 +214,16 @@ public class KhglController {
                 });
                 box.getChildren().add(labe6);
 
+                Label labe7 = new Label();
+                labe7.setPrefWidth(100);
+                labe7.setPrefHeight(30);
+                labe7.setText("修改");
+                labe7.setAlignment(Pos.CENTER);
+                labe7.setOnMouseClicked(event -> {
+                    update(s);
+                });
+                box.getChildren().add(labe7);
+
                 children.add(box);
 
                 HBox box2 = new HBox();
@@ -235,5 +238,47 @@ public class KhglController {
     private void delete(String name) {
         dao.update("delete from kh_table where name = '" + name + "'");
         query(0);
+    }
+
+    private void update(String name) {
+        // 创建新的stage
+        Stage secondStage = new Stage();
+        VBox vBox = new VBox();
+
+        Label label = new Label("请输入修改后的地址");
+        vBox.getChildren().add(label);
+        TextField textField = new TextField();
+        vBox.getChildren().add(textField);
+        Button button = new Button("确定");
+        button.setOnMouseClicked(event -> {
+            if (!textField.getText().trim().isEmpty()) {
+                dao.update("update kh_table set dz = '" + textField.getText() + "' where name = '" + name + "'");
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setContentText("成功");
+                alert.show();
+                query(0);
+            }
+        });
+        vBox.getChildren().add(button);
+
+        Label labe2 = new Label("请输入修改后的电话");
+        vBox.getChildren().add(labe2);
+        TextField textField2 = new TextField();
+        vBox.getChildren().add(textField2);
+        Button button2 = new Button("确定");
+        button2.setOnMouseClicked(event -> {
+            if (!textField2.getText().trim().isEmpty()) {
+                dao.update("update kh_table set dh = '" + textField2.getText() + "' where name = '" + name + "'");
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setContentText("成功");
+                alert.show();
+                query(0);
+            }
+        });
+        vBox.getChildren().add(button2);
+
+        Scene secondScene = new Scene(vBox, 300, 200);
+        secondStage.setScene(secondScene);
+        secondStage.show();
     }
 }

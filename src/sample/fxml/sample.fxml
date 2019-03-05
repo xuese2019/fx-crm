@@ -1,88 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<GridPane alignment="center" hgap="10.0" vgap="10.0" xmlns="http://javafx.com/javafx/8"
-          xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.SampleController">
+
+<GridPane alignment="center" hgap="10.0" vgap="10.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.SampleController">
     <columnConstraints>
-        <ColumnConstraints/>
-        <ColumnConstraints/>
-        <ColumnConstraints/>
+        <ColumnConstraints />
+        <ColumnConstraints />
+        <ColumnConstraints />
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints/>
-        <RowConstraints/>
+        <RowConstraints />
+        <RowConstraints />
     </rowConstraints>
     <children>
-        <VBox maxHeight="300.0" maxWidth="500.0" minHeight="300.0" minWidth="500.0" nodeOrientation="LEFT_TO_RIGHT"
-              prefHeight="300.0" prefWidth="500.0" GridPane.columnSpan="2147483647" GridPane.rowSpan="2147483647">
+        <VBox maxHeight="300.0" maxWidth="500.0" minHeight="300.0" minWidth="500.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="300.0" prefWidth="500.0" GridPane.columnSpan="2147483647" GridPane.rowSpan="2147483647">
             <children>
-                <HBox maxHeight="25.0" maxWidth="500.0" minHeight="25.0" minWidth="500.0"
-                      nodeOrientation="LEFT_TO_RIGHT" prefHeight="25.0" prefWidth="500.0"
-                      style="-fx-background-color: #dfe0e1;" VBox.vgrow="ALWAYS">
+                <HBox maxHeight="25.0" maxWidth="500.0" minHeight="25.0" minWidth="500.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="25.0" prefWidth="500.0" style="-fx-background-color: #dfe0e1;" VBox.vgrow="ALWAYS">
                     <children>
                         <Label fx:id="title" prefHeight="25.0" prefWidth="300.0" text="CRM">
                             <padding>
-                                <Insets left="10.0"/>
+                                <Insets left="10.0" />
                             </padding>
                         </Label>
                         <Pane nodeOrientation="RIGHT_TO_LEFT" prefHeight="25.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                             <children>
-                                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="9.0"
-                                       nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#closeLogin" prefHeight="25.0"
-                                       prefWidth="31.0" text="X" textAlignment="CENTER"/>
+                                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="9.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#closeLogin" prefHeight="25.0" prefWidth="31.0" text="X" textAlignment="CENTER" />
                             </children>
                         </Pane>
                     </children>
                 </HBox>
                 <VBox prefHeight="275.0" prefWidth="500.0">
                     <children>
-                        <HBox prefHeight="92.0" prefWidth="500.0"/>
+                        <HBox prefHeight="92.0" prefWidth="500.0" />
                         <HBox prefHeight="25.0" prefWidth="500.0">
                             <children>
-                                <Label alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="80.0" text="账户"
-                                       textAlignment="CENTER">
+                                <Label alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="80.0" text="账户" textAlignment="CENTER">
                                     <HBox.margin>
-                                        <Insets left="100.0"/>
+                                        <Insets left="100.0" />
                                     </HBox.margin>
                                     <padding>
-                                        <Insets right="10.0"/>
+                                        <Insets right="10.0" />
                                     </padding>
                                 </Label>
-                                <TextField fx:id="account" prefHeight="25.0" prefWidth="210.0"/>
+                                <TextField fx:id="account" prefHeight="25.0" prefWidth="210.0" />
                             </children>
                         </HBox>
                         <HBox prefHeight="25.0" prefWidth="500.0">
                             <children>
-                                <Label alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="80.0" text="密码"
-                                       textAlignment="CENTER">
+                                <Label alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="80.0" text="密码" textAlignment="CENTER">
                                     <padding>
-                                        <Insets right="10.0"/>
+                                        <Insets right="10.0" />
                                     </padding>
                                     <HBox.margin>
-                                        <Insets left="100.0"/>
+                                        <Insets left="100.0" />
                                     </HBox.margin>
                                 </Label>
-                                <TextField fx:id="password" prefHeight="25.0" prefWidth="210.0"/>
+                        <PasswordField fx:id="password" prefHeight="25.0" prefWidth="210.0" />
                             </children>
                             <VBox.margin>
-                                <Insets top="10.0"/>
+                                <Insets top="10.0" />
                             </VBox.margin>
                         </HBox>
                         <HBox alignment="TOP_RIGHT" layoutX="10.0" layoutY="137.0" prefHeight="25.0" prefWidth="500.0">
                             <VBox.margin>
-                                <Insets top="10.0"/>
+                                <Insets top="10.0" />
                             </VBox.margin>
                             <children>
-                                <Label fx:id="errorText" prefHeight="25.0" prefWidth="206.0"/>
-                                <Button fx:id="loginButton" mnemonicParsing="false" onMouseClicked="#login"
-                                        prefHeight="25.0" style="-fx-background-color: #b9d2fb;" text="登陆">
+                                <Label fx:id="errorText" prefHeight="25.0" prefWidth="206.0" />
+                                <Button fx:id="loginButton" mnemonicParsing="false" onMouseClicked="#login" prefHeight="25.0" style="-fx-background-color: #b9d2fb;" text="登陆">
                                     <HBox.margin>
-                                        <Insets right="110.0"/>
+                                        <Insets right="110.0" />
                                     </HBox.margin>
                                     <rotationAxis>
-                                        <Point3D/>
+                                        <Point3D />
                                     </rotationAxis>
                                 </Button>
                             </children>

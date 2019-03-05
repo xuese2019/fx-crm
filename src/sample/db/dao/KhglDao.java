@@ -17,7 +17,7 @@ import java.util.Map;
  * @description:
  */
 public class KhglDao {
-    public List<Map<Integer, String>> query(String sql) {
+    public List<Map<Integer, String>> query(String sql, int x) {
         Connection connection = null;
         ResultSet resultSet = null;
         Statement statement = null;
@@ -31,10 +31,9 @@ public class KhglDao {
             if (resultSet != null && resultSet.next()) {
                 do {
                     Map<Integer, String> m = new HashMap<>();
-                    m.put(1, resultSet.getString(1));
-                    m.put(2, resultSet.getString(2));
-                    m.put(3, resultSet.getString(3));
-                    m.put(4, resultSet.getString(4));
+                    for (int i = 1; i <= x; i++) {
+                        m.put(i, resultSet.getString(i));
+                    }
                     list.add(m);
                 } while (resultSet.next());
             }
@@ -58,6 +57,7 @@ public class KhglDao {
     }
 
     public boolean update(String sql) {
+        System.out.println(sql);
         Connection connection = null;
         Statement statement = null;
         boolean b = false;
