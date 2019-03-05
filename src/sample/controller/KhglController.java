@@ -9,12 +9,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import sample.db.utils.OpSqliteDB;
+import sample.db.dao.KhglDao;
 
-import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -24,7 +23,7 @@ import java.util.List;
  */
 public class KhglController {
 
-    OpSqliteDB db = new OpSqliteDB();
+    private KhglDao dao = new KhglDao();
 
     @FXML
     private TextField name;
@@ -46,18 +45,17 @@ public class KhglController {
         if (text.trim().isEmpty() || text1.trim().isEmpty() || text2.trim().isEmpty()) {
             error.setText("名称，电话，地址都不能为空");
         } else {
-            ResultSet query = db.query("select * from kh_table where name = '" + text + "'");
-            try {
-                if (query != null && query.next()) {
-                    error.setText("客户名称重复");
-                } else {
-                    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                    String format1 = format.format(System.currentTimeMillis());
-                    db.update("insert into kh_table (name,dh,dz,time) values ('" + text + "','" + text1 + "','" + text2 + "','" + format1 + "')");
-                    error.setText("保存成功");
-                }
-            } catch (Exception e) {
-                error.setText("失败");
+            List<Map<Integer, String>> list = dao.query("select * from kh_table where name = '" + text + "'");
+            if (list != null && list.size() > 0) {
+                error.setText("客户名称重复");
+            } else {
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                String format1 = format.format(System.currentTimeMillis());
+                dao.update("insert into kh_table (name,dh,dz,time) values ('" + text + "','" + text1 + "','" + text2 + "','" + format1 + "')");
+                error.setText("保存成功");
+                name.setText("");
+                dh.setText("");
+                dz.setText("");
             }
         }
     }
@@ -100,7 +98,7 @@ public class KhglController {
         box.getChildren().add(labe4);
 
         Label labe5 = new Label();
-        labe5.setPrefWidth(100);
+        labe5.setPrefWidth(200);
         labe5.setPrefHeight(30);
         labe5.setText("时间");
         labe5.setAlignment(Pos.CENTER);
@@ -114,24 +112,14 @@ public class KhglController {
         box2.setStyle("-fx-border-color: red;");
         children.add(box2);
 
-        ResultSet query = db.query("select * from kh_table");
-        List<List<String>> list = new ArrayList<>(0);
-        try {
-            if (query != null) {
-                while (query.next()) {
-                    System.out.println(query.getString(1));
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        List<Map<Integer, String>> list1 = dao.query("select * from kh_table");
 
-        data(children, null);
+        data(children, list1);
     }
 
-    private void data(ObservableList<Node> children, List<List<String>> list) {
-        if (list != null && list.size() > 0) {
-            for (int i = 0; i < list.size(); i++) {
+    private void data(ObservableList<Node> children, List<Map<Integer, String>> list1) {
+        if (list1 != null && list1.size() > 0) {
+            for (int i = 0; i < list1.size(); i++) {
                 HBox box = new HBox();
                 box.setPrefWidth(Region.USE_COMPUTED_SIZE);
                 box.setPrefHeight(30);
@@ -139,35 +127,35 @@ public class KhglController {
                 Label label = new Label();
                 label.setPrefWidth(30);
                 label.setPrefHeight(30);
-                label.setText(list.get(i).get(0));
+                label.setText(list1.get(i).get(0));
                 label.setAlignment(Pos.CENTER);
                 box.getChildren().add(label);
 
                 Label labe2 = new Label();
                 labe2.setPrefWidth(50);
                 labe2.setPrefHeight(30);
-                labe2.setText(list.get(i).get(1));
+                labe2.setText(list1.get(i).get(1));
                 labe2.setAlignment(Pos.CENTER);
                 box.getChildren().add(labe2);
 
                 Label labe3 = new Label();
                 labe3.setPrefWidth(100);
                 labe3.setPrefHeight(30);
-                labe3.setText(list.get(i).get(2));
+                labe3.setText(list1.get(i).get(2));
                 labe3.setAlignment(Pos.CENTER);
                 box.getChildren().add(labe3);
 
                 Label labe4 = new Label();
                 labe4.setPrefWidth(200);
                 labe4.setPrefHeight(30);
-                labe4.setText(list.get(i).get(3));
+                labe4.setText(list1.get(i).get(3));
                 labe4.setAlignment(Pos.CENTER);
                 box.getChildren().add(labe4);
 
                 Label labe5 = new Label();
-                labe5.setPrefWidth(100);
+                labe5.setPrefWidth(200);
                 labe5.setPrefHeight(30);
-                labe5.setText(list.get(i).get(4));
+                labe5.setText(list1.get(i).get(4));
                 labe5.setAlignment(Pos.CENTER);
                 box.getChildren().add(labe5);
 

@@ -9,64 +9,64 @@ import java.sql.*;
  */
 public class OpSqliteDB {
     private static final String Class_Name = "org.sqlite.JDBC";
-    private static final String DB_URL = "jdbc:sqlite:D:crm.db";
+    private static final String DB_URL = "jdbc:sqlite:D:\\work\\fx-crm\\src\\sample\\db\\sqlite\\crm.db";
 
 
-    /**
-     * 根据sql 查询
-     *
-     * @param sql
-     * @return
-     */
-    public ResultSet query(String sql) {
-        Connection connection = null;
-        ResultSet resultSet = null;
-        try {
-            connection = createConnection();
-            Statement statement = connection.createStatement();
-            statement.setQueryTimeout(30); // set timeout to 30 sec.
-            // 执行查询语句
-            resultSet = statement.executeQuery(sql);
-        } catch (SQLException e) {
-            System.err.println(e.getMessage());
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (connection != null)
-                    connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        return resultSet;
-    }
-
-    /**
-     * 插入更新
-     *
-     * @param sql
-     * @return
-     */
-    public void update(String sql) {
-        Connection connection = null;
-        try {
-            connection = createConnection();
-            Statement statement = connection.createStatement();
-            statement.executeUpdate(sql);
-        } catch (SQLException e) {
-            System.err.println(e.getMessage());
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (connection != null)
-                    connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-    }
+//    /**
+//     * 根据sql 查询
+//     *
+//     * @param sql
+//     * @return
+//     */
+//    public ResultSet query(String sql) {
+//        Connection connection = null;
+//        ResultSet resultSet = null;
+//        try {
+//            connection = createConnection();
+//            Statement statement = connection.createStatement();
+//            statement.setQueryTimeout(30); // set timeout to 30 sec.
+//            // 执行查询语句
+//            resultSet = statement.executeQuery(sql);
+//        } catch (SQLException e) {
+//            System.err.println(e.getMessage());
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        } finally {
+//            try {
+//                if (connection != null)
+//                    connection.close();
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//        return resultSet;
+//    }
+//
+//    /**
+//     * 插入更新
+//     *
+//     * @param sql
+//     * @return
+//     */
+//    public void update(String sql) {
+//        Connection connection = null;
+//        try {
+//            connection = createConnection();
+//            Statement statement = connection.createStatement();
+//            statement.executeUpdate(sql);
+//        } catch (SQLException e) {
+//            System.err.println(e.getMessage());
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        } finally {
+//            try {
+//                if (connection != null)
+//                    connection.close();
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }
 
     // 创建Sqlite数据库连接
     public static Connection createConnection() throws SQLException, ClassNotFoundException {

@@ -3,7 +3,7 @@ package sample.controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import sample.db.utils.OpSqliteDB;
+import sample.db.dao.AccountDao;
 
 
 /**
@@ -13,7 +13,7 @@ import sample.db.utils.OpSqliteDB;
  */
 public class GrzxController {
 
-    private OpSqliteDB db = new OpSqliteDB();
+    private AccountDao dao = new AccountDao();
 
     @FXML
     private TextField password;
@@ -26,13 +26,13 @@ public class GrzxController {
 
     @FXML
     private void updatePWD() {
-        db.update("update account_table set password = " + password.getText());
+        dao.update("update account_table set password = " + password.getText());
         pwderror.setText("修改成功");
     }
 
     @FXML
     private void updateName() {
-        db.update("update account_table set name = " + userName.getText());
+        dao.update("update account_table set name = " + userName.getText());
         nameerror.setText("修改成功");
     }
 }
