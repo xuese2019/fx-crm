@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact name="fx-crm:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/fx_crm_jar</output-path>
+    <root id="root">
+      <element id="archive" name="fx-crm.jar">
+        <element id="module-output" name="fx-crm" />
+      </element>
+      <element id="library" level="project" name="sqlite-jdbc-3.7.2" />
+    </root>
+  </artifact>
+</component>
