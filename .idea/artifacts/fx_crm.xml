@@ -1,0 +1,22 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" build-on-make="true" name="fx-crm">
+    <output-path>$PROJECT_DIR$/out/artifacts/fx_crm</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="sample.Main" />
+        <option name="description" value="" />
+        <option name="htmlPlaceholderId" value="" />
+        <option name="nativeBundle" value="all" />
+        <option name="title" value="" />
+        <option name="vendor" value="" />
+        <option name="version" value="" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="fx_crm.jar">
+        <element id="module-output" name="fx-crm" />
+      </element>
+      <element id="library" level="project" name="sqlite-jdbc-3.7.2" />
+    </root>
+  </artifact>
+</component>
