@@ -16,7 +16,8 @@ public class OpSqliteDB {
     public static Connection createConnection() throws SQLException, ClassNotFoundException {
         Class.forName("org.sqlite.JDBC");
         String property = System.getProperty("user.dir");
-        return DriverManager.getConnection("jdbc:sqlite:"+property.substring(0,1)+":\\crm.db");
+        System.out.println(property);
+        return DriverManager.getConnection("jdbc:sqlite:"+property+"\\crm.db");
     }
 
 }
