@@ -16,7 +16,7 @@ import java.util.Map;
  * @date:
  * @description:
  */
-public class KhglDao {
+public class Daos {
     public List<Map<Integer, String>> query(String sql, int x) {
         Connection connection = null;
         ResultSet resultSet = null;

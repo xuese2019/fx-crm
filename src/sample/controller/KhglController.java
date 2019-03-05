@@ -13,7 +13,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import sample.db.dao.KhglDao;
+import sample.db.dao.Daos;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -27,7 +27,7 @@ import java.util.Map;
  */
 public class KhglController {
 
-    private KhglDao dao = new KhglDao();
+    private Daos dao = new Daos();
 
     private static int p = 0;
     private static int p2 = 30;
