@@ -184,12 +184,6 @@ public class BfjlController {
 
         children.add(box);
 
-        HBox box2 = new HBox();
-        box2.setPrefWidth(Region.USE_COMPUTED_SIZE);
-        box2.setPrefHeight(1);
-        box2.setStyle("-fx-border-color: red;");
-        children.add(box2);
-
         String s = "";
         if (!khmc.getText().trim().isEmpty()) {
             s += " and khmc like '%" + khmc.getText() + "%' ";
@@ -214,6 +208,11 @@ public class BfjlController {
                 HBox box = new HBox();
                 box.setPrefWidth(Region.USE_COMPUTED_SIZE);
                 box.setPrefHeight(30);
+                if(i%2 == 0){
+                    box.setStyle("-fx-background-color: #0041e3;");
+                }else{
+                    box.setStyle("-fx-background-color: #285ee4;");
+                }
 
                 Label label = new Label();
                 label.setPrefWidth(30);
@@ -241,14 +240,7 @@ public class BfjlController {
                 labe4.setText(list1.get(i).get(3));
                 labe4.setAlignment(Pos.CENTER);
                 box.getChildren().add(labe4);
-
                 children.add(box);
-
-                HBox box2 = new HBox();
-                box2.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                box2.setPrefHeight(1);
-                box2.setStyle("-fx-border-color: red;");
-                children.add(box2);
             }
         }
     }

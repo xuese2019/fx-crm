@@ -1,2 +1,25 @@
-.home-left{
+*{
+    -fx-text-fill: white;
+}
+.cursor1:hover{
+    -fx-cursor: hand;
+    -fx-background-color: #003bce;
+}
+.home-title{
+    -fx-background-color: #0049ff;
+}
+.home-left-men-label{
+    -fx-border-color: #0081ff;
+    -fx-background-image: url("../img/img2.jpg");
+}
+.home-center{
+    -fx-background-image: url("../img/img1.jpg") no-repeat center center;
+    -fx-background-size: cover;
+}
+.buttons{
+    -fx-background-color: #0049ff;
+}
+.buttons:hover{
+    -fx-cursor: hand;
+    -fx-background-color: #003bce;
 }

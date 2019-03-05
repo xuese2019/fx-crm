@@ -25,16 +25,18 @@ public class Main extends Application {
             VBox node = (VBox) childrenUnmodifiable.get(0);
             HBox node1 = (HBox) node.getChildrenUnmodifiable().get(0);
             Label node2 = (Label) node1.getChildrenUnmodifiable().get(0);
-            node2.setText("这是一个测试系统");
+            node2.setText("客户跟进");
         }
 //        primaryStage.setTitle("CRM");
-        primaryStage.setScene(new Scene(root));
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add(getClass().getResource("css/login.css").toExternalForm());
+        primaryStage.setScene(scene);
 //        禁止窗口缩放大小
         primaryStage.setResizable(false);
 //        设置窗口类型
 //        StageStyle.DECORATED - 具有纯白色背景和平台装饰的舞台。
 //        StageStyle.UNDECORATED - 具有纯白色背景且无装饰的舞台。
-//        StageStyle.TRANSPARENT - 具有透明背景且无装饰的舞台。//慎用
+//        StageStyle.TRANSPARENT - 具有透明背景且无装饰的舞台
 //        StageStyle.UTILITY - 具有纯白色背景和最小平台装饰的舞台。//慎用
         primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.sizeToScene();

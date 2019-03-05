@@ -139,13 +139,6 @@ public class KhglController {
 
         children.add(box);
 
-        HBox box2 = new HBox();
-        box2.setPrefWidth(Region.USE_COMPUTED_SIZE);
-        box2.setPrefHeight(1);
-        box2.setStyle("-fx-border-color: red;");
-        children.add(box2);
-
-//        List<Map<Integer, String>> list1 = dao.query("select * from kh_table limit 20 offset " + p);
         String s = "";
         if (!name.getText().trim().isEmpty()) {
             s += " and name like '%" + name.getText() + "%' ";
@@ -167,6 +160,11 @@ public class KhglController {
                 HBox box = new HBox();
                 box.setPrefWidth(Region.USE_COMPUTED_SIZE);
                 box.setPrefHeight(30);
+                if(i%2 == 0){
+                    box.setStyle("-fx-background-color: #0041e3;");
+                }else{
+                    box.setStyle("-fx-background-color: #285ee4;");
+                }
 
                 Label label = new Label();
                 label.setPrefWidth(30);
@@ -226,11 +224,6 @@ public class KhglController {
 
                 children.add(box);
 
-                HBox box2 = new HBox();
-                box2.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                box2.setPrefHeight(1);
-                box2.setStyle("-fx-border-color: red;");
-                children.add(box2);
             }
         }
     }

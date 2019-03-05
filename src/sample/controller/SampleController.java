@@ -7,10 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import sample.db.dao.AccountDao;
 import sample.utils.AccountUtils;
@@ -58,19 +55,21 @@ public class SampleController {
         String accountText = account.getText();
         String passwordText = password.getText();
         loginButton.setDisable(true);
-        if (accountText.equals("admin") && passwordText.equals("admin")) {
-            loginButton.setDisable(true);
-//            跳转
+//        if (accountText.equals("admin") && passwordText.equals("admin")) {
+//            loginButton.setDisable(true);
+////            跳转
+//            toHome();
+//        } else {
+        boolean b = dao.login("select * from account_table where account = '" + accountText + "' and password = '" + passwordText + "'");
+        if (b) {
             toHome();
         } else {
-            boolean b = dao.login("select * from account_table where account = '" + accountText + "' and password = '" + passwordText + "'");
-            if (b) {
-                toHome();
-            } else {
-                loginButton.setDisable(false);
-                errorText.setText("账号或密码错误");
-            }
+            loginButton.setDisable(false);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("账号或密码错误");
+            alert.show();
         }
+//        }
     }
 
     /**

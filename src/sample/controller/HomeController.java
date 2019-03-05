@@ -4,6 +4,7 @@ import com.sun.javafx.robot.impl.FXRobotHelper;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -17,6 +18,8 @@ public class HomeController {
 
     @FXML
     private VBox bodys;
+    @FXML
+    private VBox left;
 
     /**
      * 关闭程序
@@ -36,6 +39,14 @@ public class HomeController {
         ObservableList<Stage> stages = FXRobotHelper.getStages();
         Stage stage = stages.get(0);
         stage.setIconified(true);
+    }
+
+    /**
+     * 首页
+     */
+    @FXML
+    private void sy() {
+        men("sy");
     }
 
     /**
@@ -65,10 +76,20 @@ public class HomeController {
     private void men(String str) {
         try {
             bodys.getChildren().clear();
-            Parent root = FXMLLoader.load(getClass().getResource("../fxml/"+str+".fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("../fxml/" + str + ".fxml"));
             bodys.getChildren().add(root);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void menus() {
+        ObservableList<Node> children = left.getChildren();
+        for (int i = 0; i < children.size(); i++) {
+            if (i != 0) {
+                children.get(i).setVisible(!children.get(i).isVisible());
+            }
         }
     }
 
