@@ -1,6 +1,7 @@
 package sample.controller;
 
 import com.sun.javafx.robot.impl.FXRobotHelper;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,9 +27,7 @@ public class HomeController {
      */
     @FXML
     private void closeLogin() {
-//        Platform.exit();
-        ObservableList<Stage> stages = FXRobotHelper.getStages();
-        stages.get(0).close();
+        Platform.exit();
     }
 
     /**
