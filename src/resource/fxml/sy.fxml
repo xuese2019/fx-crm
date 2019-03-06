@@ -14,14 +14,12 @@
             <HBox prefHeight="30.0">
                <children>
                   <Button mnemonicParsing="false" onMouseClicked="#getZm" prefHeight="30.0" styleClass="buttons" text="桌面" />
-                  <Button mnemonicParsing="false" prefHeight="30.0" styleClass="buttons" text="我的电脑" />
+                  <Button mnemonicParsing="false" onMouseClicked="#getPC" prefHeight="30.0" styleClass="buttons" text="我的电脑" />
+                  <Button mnemonicParsing="false" onMouseClicked="#getMac" prefHeight="30.0" styleClass="buttons" text="获取硬盘序列号" />
+                  <Label fx:id="mac" prefHeight="30.0" />
                </children>
             </HBox>
-            <HBox fx:id="datas" VBox.vgrow="ALWAYS">
-               <children>
-                  <ScrollBar HBox.hgrow="ALWAYS" />
-               </children>
-            </HBox>
+            <HBox fx:id="datas" VBox.vgrow="ALWAYS" />
          </children>
       </VBox>
    </children>
