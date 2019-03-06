@@ -1,14 +1,18 @@
 package sample.controller;
 
+import com.sun.javafx.robot.impl.FXRobotHelper;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.TextAlignment;
+import javafx.stage.Stage;
 
 import javax.swing.filechooser.FileSystemView;
 import java.io.BufferedReader;
@@ -22,6 +26,9 @@ import java.io.InputStreamReader;
  * @description:
  */
 public class SyController {
+
+    private static String p = null;
+
     @FXML
     private HBox datas;
     @FXML
@@ -31,46 +38,9 @@ public class SyController {
     private void getZm() {
         File desktopDir = FileSystemView.getFileSystemView().getHomeDirectory();
         String desktopPath = desktopDir.getAbsolutePath();
-
-        mac.setText("桌面地址:" + desktopPath);
-
-        File file = new File(desktopPath);
-        File[] tempList = file.listFiles();
-
-        datas.getChildren().clear();
-        if (tempList != null && tempList.length > 0) {
-            VBox vBox = new VBox();
-            for (int i = 0; i < tempList.length; i++) {
-                HBox pane = new HBox();
-                pane.setPrefHeight(30);
-                pane.setPrefWidth(300);
-                pane.setPrefHeight(Region.USE_COMPUTED_SIZE);
-                ImageView imageView = new ImageView();
-                Image image = null;
-                if (tempList[i].isFile()) {
-//                    image = new Image("/img/wjj.jpg");
-                }
-                if (tempList[i].isDirectory()) {
-                    image = new Image(getClass().getResource("/img/wjj.jpg").toString());
-                }
-                imageView.setImage(image);
-                imageView.setFitWidth(30);
-                imageView.setFitHeight(30);
-                pane.getChildren().add(imageView);
-                Label label = new Label(tempList[i].getName());
-                label.setPrefHeight(30);
-                pane.getChildren().add(label);
-                vBox.getChildren().add(pane);
-                if (i % 30 == 0 && i != 0) {
-                    datas.getChildren().add(vBox);
-                    vBox = new VBox();
-                }
-                if (i == (tempList.length - 1) && i % 30 != 0) {
-                    datas.getChildren().add(vBox);
-                    vBox = new VBox();
-                }
-            }
-        }
+        p = desktopPath;
+        mac.setText("当前地址:" + desktopPath);
+        findFileByDisk(desktopPath);
     }
 
     @FXML
@@ -129,12 +99,88 @@ public class SyController {
             Button button = new Button();
             button.setStyle("-fx-background-color: #004900;");
             button.setText(fs[i].toString());
+            button.setOnMouseClicked(event -> {
+
+            });
 //            label.setText("盘符:" + fsv.getSystemDisplayName(fs[i]) + " "
 //                    + "总大小:" + (fs[i].getTotalSpace() / 1024 / 1024 / 1024 ) + "G "
 //                    + "剩余:" + (fs[i].getFreeSpace() / 1024 / 1024 / 1024 )+"G");
             button.setPrefWidth(50);
             button.setPrefHeight(30);
             hBox.getChildren().add(button);
+        }
+    }
+
+    private void findFileByDisk(String character) {
+        mac.setText("当前地址:" + character);
+        datas.getChildren().clear();
+        File file = new File(character);
+        File[] tempList = file.listFiles();
+//        滚动面板
+        ScrollPane scrollPane = new ScrollPane();
+        scrollPane.getStyleClass().add("edge-to-edge");
+        ObservableList<Stage> stages = FXRobotHelper.getStages();
+        Stage stage = stages.get(0);
+        Scene scene = stage.getScene();
+        scrollPane.setPrefWidth(scene.getWidth() - 150);
+        scrollPane.setMinViewportHeight(scene.getHeight() - 55);
+//        隐藏底部滚动条
+        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+//        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+
+        HBox hBox = new HBox();
+        hBox.setStyle("-fx-background-color:#003bce;");
+        hBox.setPrefWidth(scene.getWidth() - 165);
+        hBox.setMinHeight(scrollPane.getMinViewportHeight());
+        scrollPane.setContent(hBox);
+        datas.getChildren().add(scrollPane);
+        if (tempList != null && tempList.length > 0) {
+            VBox vBoxa = new VBox();
+            vBoxa.setPrefHeight(Region.USE_COMPUTED_SIZE);
+            VBox vBoxb = new VBox();
+            vBoxb.setPrefHeight(Region.USE_COMPUTED_SIZE);
+            VBox vBoxc = new VBox();
+            vBoxc.setPrefHeight(Region.USE_COMPUTED_SIZE);
+            vBoxc.setPrefWidth(100);
+            if (!p.equals(character)) {
+                Button button = new Button();
+                button.setText("返回");
+                button.setOnMouseClicked(event -> {
+                    int i = character.lastIndexOf("\\");
+                    String substring = character.substring(0, i);
+                    findFileByDisk(substring);
+                });
+                vBoxc.getChildren().add(button);
+            }
+            hBox.getChildren().add(vBoxc);
+            hBox.getChildren().add(vBoxa);
+            hBox.getChildren().add(vBoxb);
+            for (int i = 0; i < tempList.length; i++) {
+                HBox pane = new HBox();
+                pane.setPrefHeight(30);
+                pane.setPrefWidth(300);
+                ImageView imageView = new ImageView();
+                imageView.setFitWidth(30);
+                imageView.setFitHeight(30);
+                if (tempList[i].isFile()) {
+//                    image = new Image("/img/wjj.jpg");
+                    vBoxb.getChildren().add(pane);
+                }
+//                是否是文件夹
+                if (tempList[i].isDirectory()) {
+                    Image image = new Image(getClass().getResource("/img/wjj.jpg").toString());
+                    imageView.setImage(image);
+                    pane.getChildren().add(imageView);
+                    String path = tempList[i].getPath();
+                    pane.setOnMouseClicked(event -> {
+                        findFileByDisk(path);
+                    });
+                    vBoxa.getChildren().add(pane);
+                }
+                Label label = new Label(tempList[i].getName());
+                label.setPrefHeight(30);
+                pane.getChildren().add(label);
+            }
         }
     }
 }
