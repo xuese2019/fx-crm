@@ -14,6 +14,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import sample.db.dao.Daos;
+import sample.utils.AlertUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -103,7 +104,7 @@ public class KhglController {
         box.getChildren().add(label);
 
         Label labe2 = new Label();
-        labe2.setPrefWidth(50);
+        labe2.setPrefWidth(200);
         labe2.setPrefHeight(30);
         labe2.setText("名称");
         labe2.setAlignment(Pos.CENTER);
@@ -174,7 +175,7 @@ public class KhglController {
                 box.getChildren().add(label);
 
                 Label labe2 = new Label();
-                labe2.setPrefWidth(50);
+                labe2.setPrefWidth(200);
                 labe2.setPrefHeight(30);
                 labe2.setText(list1.get(i).get(1));
                 labe2.setAlignment(Pos.CENTER);
@@ -208,7 +209,9 @@ public class KhglController {
                 labe6.setAlignment(Pos.CENTER);
                 String s = list1.get(i).get(1);
                 labe6.setOnMouseClicked(event -> {
-                    delete(s);
+                    boolean b = new AlertUtils().f_alert_confirmDialog("警告", "确定要删除？");
+                    if (b)
+                        delete(s);
                 });
                 box.getChildren().add(labe6);
 
