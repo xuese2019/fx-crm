@@ -1,7 +1,9 @@
 package sample.controller;
 
 import com.sun.javafx.robot.impl.FXRobotHelper;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -150,6 +152,16 @@ public class SyController {
                 }
             });
             vBoxc.getChildren().add(button);
+
+            Button button5 = new Button();
+            button5.setText("进度条");
+            button5.setStyle("-fx-background-color: #0000CD;-fx-cursor: hand;");
+            button5.setPrefWidth(100);
+            button5.setOnMouseClicked(event -> {
+                jdt();
+            });
+            vBoxc.getChildren().add(button5);
+
             List<String> list = getPC();
             if (list.size() > 0) {
                 list.forEach(j -> {
@@ -280,50 +292,82 @@ public class SyController {
     //    搜索
     private void seach(String str, String path) {
         if (str != null && !str.trim().isEmpty()) {
-            List<String> list = new ArrayList<>();
-            list.add(path);
-            List<String> dg = dg(list, path, str);
-            datas.getChildren().clear();
-//        滚动面板
-            ScrollPane scrollPane = new ScrollPane();
-            scrollPane.getStyleClass().add("edge-to-edge");
-            ObservableList<Stage> stages = FXRobotHelper.getStages();
-            Stage stage = stages.get(0);
-            Scene scene = stage.getScene();
-            scrollPane.setPrefWidth(scene.getWidth() - 150);
-            scrollPane.setMinViewportHeight(scene.getHeight() - 55);
-//        隐藏底部滚动条
-            scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+//            datas.getChildren().clear();
+//            Label label = new Label("搜索中...");
+//            datas.getChildren().add(label);
+            Task task = new Task() {
+                @Override
+                protected Object call() throws Exception {
+                    seach2(path, str);
+                    return null;
+                }
+            };
+            Thread thread = new Thread(task);
+            thread.start();
 
-            VBox vBox = new VBox();
-            vBox.setStyle("-fx-background-color:#1E90FF;");
-            vBox.setPrefWidth(scene.getWidth() - 165);
-            vBox.setMinHeight(scrollPane.getMinViewportHeight());
-            scrollPane.setContent(vBox);
-            datas.getChildren().add(scrollPane);
-            if (dg.size() > 0) {
-                dg.forEach(k -> {
-                    HBox hBox = new HBox();
-                    hBox.setPrefWidth(vBox.getPrefWidth());
-                    hBox.setPrefHeight(30);
-                    Label label = new Label();
-                    label.setText(k);
-                    label.setOnMouseClicked(event -> {
-                        if (path.equals(k)) {
-                            findFileByDisk(path);
-                        } else {
-                            useAWTDesktop(event, k);
-                        }
-                    });
-                    hBox.getChildren().add(label);
-                    vBox.getChildren().add(hBox);
-                });
-            }
+            datas.getChildren().clear();
+            Label label = new Label();
+            label.setText("搜索中...");
+            datas.getChildren().add(label);
+//            非主线程中更新ui
+//            Platform.runLater(new Runnable() {
+//                @Override
+//                public void run() {
+//                    task.run();
+//                }
+//            });
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("查询条件不能为空");
             alert.show();
         }
+    }
+
+    private void seach2(String path, String str) {
+        List<String> list = new ArrayList<>();
+        list.add(path);
+        List<String> dg = dg(list, path, str);
+//        滚动面板
+        ScrollPane scrollPane = new ScrollPane();
+        scrollPane.getStyleClass().add("edge-to-edge");
+        ObservableList<Stage> stages = FXRobotHelper.getStages();
+        Stage stage = stages.get(0);
+        Scene scene = stage.getScene();
+        scrollPane.setPrefWidth(scene.getWidth() - 150);
+        scrollPane.setMinViewportHeight(scene.getHeight() - 55);
+//        隐藏底部滚动条
+        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+
+        VBox vBox = new VBox();
+        vBox.setStyle("-fx-background-color:#1E90FF;");
+        vBox.setPrefWidth(scene.getWidth() - 165);
+        vBox.setMinHeight(scrollPane.getMinViewportHeight());
+        scrollPane.setContent(vBox);
+        if (dg.size() > 0) {
+            dg.forEach(k -> {
+                HBox hBox = new HBox();
+                hBox.setPrefWidth(vBox.getPrefWidth());
+                hBox.setPrefHeight(30);
+                Label label = new Label();
+                label.setText(k);
+                label.setOnMouseClicked(event -> {
+                    if (path.equals(k)) {
+                        findFileByDisk(path);
+                    } else {
+                        useAWTDesktop(event, k);
+                    }
+                });
+                hBox.getChildren().add(label);
+                vBox.getChildren().add(hBox);
+            });
+        }
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                datas.getChildren().clear();
+                datas.getChildren().add(scrollPane);
+            }
+        });
     }
 
     private List<String> dg(List<String> list, String path, String str) {
@@ -366,5 +410,32 @@ public class SyController {
         } else {
             findFileByDisk(p);
         }
+    }
+
+    private void jdt() {
+        datas.getChildren().clear();
+        Label label = new Label();
+        label.setStyle("-fx-background-color: blue;");
+        label.setPrefHeight(15);
+        label.setPrefWidth(0);
+        datas.getChildren().add(label);
+        Task task = new Task() {
+            @Override
+            protected Object call() throws Exception {
+                for (double i = 0.0; i < datas.getWidth(); i++) {
+                    Thread.sleep(50);
+                    final double j = i;
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            label.setPrefWidth(j);
+                        }
+                    });
+                }
+                return null;
+            }
+        };
+        Thread thread = new Thread(task);
+        thread.start();
     }
 }

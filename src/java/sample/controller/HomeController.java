@@ -3,12 +3,17 @@ package sample.controller;
 import com.sun.javafx.robot.impl.FXRobotHelper;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 
 /**
  * @author: LD
@@ -21,6 +26,8 @@ public class HomeController {
     private VBox bodys;
     @FXML
     private VBox left;
+    @FXML
+    private Label times;
 
     /**
      * 关闭程序
@@ -72,6 +79,14 @@ public class HomeController {
         men("bfjl");
     }
 
+    /**
+     * 常用软件
+     */
+    @FXML
+    private void cyrj() {
+        men("cyrj");
+    }
+
     private void men(String str) {
         try {
 //            ObservableList<Stage> stages = FXRobotHelper.getStages();
@@ -101,6 +116,54 @@ public class HomeController {
                 children.get(i).setVisible(!children.get(i).isVisible());
             }
         }
+    }
+
+    //    时间
+    public void dates() {
+        Task task = new Task() {
+            @Override
+            protected Object call() throws Exception {
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss EEEE");
+                Thread.sleep(1000);
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        String format1 = format.format(System.currentTimeMillis());
+                        times.setText(format1);
+                        dates();
+                    }
+                });
+                return null;
+            }
+        };
+        Thread thread = new Thread(task);
+        thread.start();
+    }
+
+    //    模拟cmd
+    private void cmd(String s) {
+        try {
+            Runtime.getRuntime().exec(s);
+//            Runtime.getRuntime().exec("cmd /c "+s);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //    关闭计算机
+    @FXML
+    private void stopWindows() {
+        cmd("Shutdown -s -t 0");
+    }
+
+    @FXML
+    private void restWindows() {
+        cmd("Shutdown -r -t 0");
+    }
+
+    @FXML
+    private void qx() {
+        cmd("Shutdown -a");
     }
 
 }

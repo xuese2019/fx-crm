@@ -81,7 +81,10 @@ public class SampleController {
             AccountUtils.ACC = account.getText();
             ObservableList<Stage> stages = FXRobotHelper.getStages();
             Stage stage = stages.get(0);
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/home.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/home.fxml"));
+            Parent root = fxmlLoader.load();
+            HomeController controller = fxmlLoader.getController();
+            controller.dates();
             Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("/css/home.css").toExternalForm());
             stage.setScene(scene);
