@@ -44,10 +44,12 @@ public class WlljController {
             if (list != null && list.size() > 0) {
                 for (int i = 0; i < list.size(); i++) {
                     HBox hBox = new HBox();
+                    hBox.setPrefHeight(30);
                     hBox.setOnMouseClicked(event -> {
 //                        addres(list.get(j));
                     });
                     Label label4 = new Label(list.get(i));
+                    label4.setPrefHeight(30);
                     hBox.getChildren().add(label4);
                     vBox.getChildren().add(hBox);
                 }
