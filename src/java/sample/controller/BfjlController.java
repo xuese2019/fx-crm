@@ -14,6 +14,7 @@ import sample.db.dao.Daos;
 
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 
 /**
@@ -105,7 +106,7 @@ public class BfjlController {
         button.setOnMouseClicked(event -> {
             if (!label2.getText().trim().isEmpty() && datePicker.getValue() != null && !textArea.getText().trim().isEmpty()) {
                 if (textArea.getText().length() <= 2000) {
-                    dao.update("insert into bfjl_table (khmc,gjsj,gjnr) values ('" + label2.getText() + "','" + datePicker.getValue().toString() + "','" + textArea.getText() + "')");
+                    dao.update("insert into bfjl_table (uuid,khmc,gjsj,gjnr) values ('" + UUID.randomUUID() + "','" + label2.getText() + "','" + datePicker.getValue().toString() + "','" + textArea.getText() + "')");
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setContentText("成功");
                     alert.show();
@@ -197,7 +198,7 @@ public class BfjlController {
         if (!gjz.getText().trim().isEmpty()) {
             s += " and gjnr like '%" + gjz.getText() + "%' ";
         }
-        List<Map<Integer, String>> list1 = dao.query("select * from bfjl_table where 1 = 1 " + s + " order by gjsj desc limit " + p + "," + p2, 3);
+        List<Map<Integer, String>> list1 = dao.query("select uuid,khmc,gjsj,gjnr from bfjl_table where 1 = 1 " + s + " order by gjsj desc limit " + p + "," + p2, 4);
 
         data(children, list1);
     }
@@ -224,24 +225,41 @@ public class BfjlController {
                 Label labe2 = new Label();
                 labe2.setPrefWidth(50);
                 labe2.setPrefHeight(30);
-                labe2.setText(list1.get(i).get(1));
+                labe2.setText(list1.get(i).get(2));
                 labe2.setAlignment(Pos.CENTER);
                 box.getChildren().add(labe2);
 
                 Label labe31 = new Label();
                 labe31.setPrefWidth(100);
                 labe31.setPrefHeight(30);
-                labe31.setText(list1.get(i).get(2));
+                labe31.setText(list1.get(i).get(3));
                 labe31.setAlignment(Pos.CENTER);
                 box.getChildren().add(labe31);
 
                 Label labe4 = new Label();
                 labe4.setPrefHeight(30);
-                labe4.setText(list1.get(i).get(3));
+                labe4.setMinWidth(1000);
+                labe4.setText(list1.get(i).get(4));
                 labe4.setAlignment(Pos.CENTER);
                 box.getChildren().add(labe4);
+
+                Label labe5 = new Label();
+                labe5.setPrefHeight(30);
+                labe5.setText("删除");
+                labe5.setAlignment(Pos.CENTER);
+                final int j = i;
+                labe5.setOnMouseClicked(event -> {
+                    delete(list1.get(j).get(1));
+                });
+                box.getChildren().add(labe5);
+
                 children.add(box);
             }
         }
+    }
+
+    private void delete(String id) {
+        dao.update("delete from bfjl_table where uuid = '" + id + "'");
+        page();
     }
 }
