@@ -95,6 +95,14 @@ public class HomeController {
         men("llq");
     }
 
+    /**
+     * 网络邻居
+     */
+    @FXML
+    private void wllj() {
+        men("wllj");
+    }
+
     private void men(String str) {
         try {
 //            ObservableList<Stage> stages = FXRobotHelper.getStages();
@@ -111,6 +119,10 @@ public class HomeController {
             }
             if (str.equals("llq")){
                 LlqController controller = fxmlLoader.getController();
+                controller.init();
+            }
+            if (str.equals("wllj")){
+                WlljController controller = fxmlLoader.getController();
                 controller.init();
             }
 //            Parent root = FXMLLoader.load(getClass().getResource("/fxml/" + str + ".fxml"));
