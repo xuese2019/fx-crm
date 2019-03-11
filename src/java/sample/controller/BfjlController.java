@@ -11,6 +11,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import sample.db.dao.Daos;
+import sample.utils.AlertUtils;
 
 import java.util.List;
 import java.util.Map;
@@ -110,6 +111,8 @@ public class BfjlController {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setContentText("成功");
                     alert.show();
+                    secondStage.close();
+                    page();
                 } else {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setContentText("记录不能超过2000个字");
@@ -249,7 +252,9 @@ public class BfjlController {
                 labe5.setAlignment(Pos.CENTER);
                 final int j = i;
                 labe5.setOnMouseClicked(event -> {
-                    delete(list1.get(j).get(1));
+                    boolean b = new AlertUtils().f_alert_confirmDialog("警告", "确定要删除？");
+                    if (b)
+                        delete(list1.get(j).get(1));
                 });
                 box.getChildren().add(labe5);
 
