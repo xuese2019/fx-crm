@@ -12,19 +12,19 @@
             <children>
                 <VBox fx:id="left" prefWidth="150.0" styleClass="home-left">
                     <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#menus" prefHeight="30.0" prefWidth="150.0" text="菜单" textAlignment="CENTER" textFill="WHITE">
+                        <Label alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#menus" prefHeight="30.0" prefWidth="150.0" text="菜单" textAlignment="CENTER">
                             <styleClass>
                                 <String fx:value="home-title" />
                                 <String fx:value="cursor1" />
                             </styleClass>
                         </Label>
-                        <Label fx:id="sy" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#sy" prefHeight="30.0" prefWidth="150.0" text="首页" textAlignment="CENTER" textFill="WHITE" visible="false">
+                        <Label fx:id="sy" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#sy" prefHeight="30.0" prefWidth="150.0" text="首页" textAlignment="CENTER" visible="false">
                             <styleClass>
                                 <String fx:value="home-left-men-label" />
                                 <String fx:value="cursor1" />
                             </styleClass>
                         </Label>
-                        <Label fx:id="grzx" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#grzx" prefHeight="30.0" prefWidth="150.0" text="个人中心" textAlignment="CENTER" textFill="WHITE" visible="false">
+                        <Label fx:id="grzx" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#grzx" prefHeight="30.0" prefWidth="150.0" text="个人中心" textAlignment="CENTER" visible="false">
                             <VBox.margin>
                                 <Insets />
                             </VBox.margin>
@@ -33,19 +33,25 @@
                                 <String fx:value="cursor1" />
                             </styleClass>
                         </Label>
-                        <Label fx:id="khgl" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#khgl" prefHeight="30.0" prefWidth="150.0" text="客户管理" textAlignment="CENTER" textFill="WHITE" visible="false">
+                        <Label fx:id="khgl" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#khgl" prefHeight="30.0" prefWidth="150.0" text="客户管理" textAlignment="CENTER" visible="false">
                             <styleClass>
                                 <String fx:value="home-left-men-label" />
                                 <String fx:value="cursor1" />
                             </styleClass>
                         </Label>
-                        <Label fx:id="bfjl" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#bfjl" prefHeight="30.0" prefWidth="150.0" text="拜访记录" textAlignment="CENTER" textFill="WHITE" visible="false">
+                        <Label fx:id="bfjl" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#bfjl" prefHeight="30.0" prefWidth="150.0" text="拜访记录" textAlignment="CENTER" visible="false">
                             <styleClass>
                                 <String fx:value="home-left-men-label" />
                                 <String fx:value="cursor1" />
                             </styleClass>
                         </Label>
-                  <Label fx:id="cyrj" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#cyrj" prefHeight="30.0" prefWidth="150.0" text="常用软件" textAlignment="CENTER" textFill="WHITE" visible="false">
+                  <Label fx:id="cyrj" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#cyrj" prefHeight="30.0" prefWidth="150.0" text="常用软件" textAlignment="CENTER" visible="false">
+                     <styleClass>
+                        <String fx:value="home-left-men-label" />
+                        <String fx:value="cursor1" />
+                     </styleClass>
+                  </Label>
+                  <Label fx:id="llq" alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#llq" prefHeight="30.0" prefWidth="150.0" text="浏览器" textAlignment="CENTER" visible="false">
                      <styleClass>
                         <String fx:value="home-left-men-label" />
                         <String fx:value="cursor1" />

@@ -87,6 +87,14 @@ public class HomeController {
         men("cyrj");
     }
 
+    /**
+     * 浏览器
+     */
+    @FXML
+    private void llq() {
+        men("llq");
+    }
+
     private void men(String str) {
         try {
 //            ObservableList<Stage> stages = FXRobotHelper.getStages();
@@ -100,6 +108,10 @@ public class HomeController {
             if (str.equals("bfjl")) {
                 BfjlController controller = fxmlLoader.getController();
                 controller.page();
+            }
+            if (str.equals("llq")){
+                LlqController controller = fxmlLoader.getController();
+                controller.init();
             }
 //            Parent root = FXMLLoader.load(getClass().getResource("/fxml/" + str + ".fxml"));
             bodys.getChildren().add(root);
